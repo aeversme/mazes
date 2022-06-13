@@ -24,7 +24,8 @@ class Cell:
         return self.links
 
     def show_links(self):
-        return self.links.keys()
+        keys = [item_key for item_key in self.links]
+        return keys
 
     def is_linked(self, cell):
         if cell in self.links.keys():
