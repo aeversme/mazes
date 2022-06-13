@@ -1,5 +1,4 @@
-import pytest
-
+from pytest import raises
 from ..cell import Cell
 
 
@@ -27,17 +26,15 @@ def test_cell_link():
 
 def test_cell_unlink():
     cell1, cell2 = setup(link=True)
-
     unlink = cell1.unlink(cell2)
 
-    with pytest.raises(KeyError):
+    with raises(KeyError):
         link = cell1.links[cell2]
     assert unlink == {}
 
 
 def test_cell_show_links():
     cell1, cell2 = setup(link=True)
-
     cell3 = Cell(5, 6)
     cell1.link(cell3)
 
@@ -56,7 +53,6 @@ def test_cell_is_linked():
 def test_cell_neighbors():
     cell1, cell2 = setup()
     cell3 = Cell(5, 6)
-
     cell1.north_neighbor = cell2
     cell1.west_neighbor = cell3
     neighbors = cell1.neighbors()
