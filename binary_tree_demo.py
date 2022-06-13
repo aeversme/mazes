@@ -10,8 +10,7 @@ def create_maze():
 
 def binary_tree_demo():
     maze = create_maze()
-    print(maze.size())
-    print(maze.grid)
+    print(maze)
 
 
 if __name__ == "__main__":

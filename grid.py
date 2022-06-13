@@ -63,3 +63,25 @@ class Grid:
         :return: int
         """
         return self.rows * self.columns
+
+    def __str__(self):
+        output = '+' + (' --- +' * self.columns) + '\n'
+        for row in self.grid:
+            top = '|'
+            bottom = '+'
+            for cell in row:
+                if not cell:
+                    cell = Cell(-1, -1)
+
+                body = '     '
+                corner = '+'
+
+                east_boundary = ' ' if cell.is_linked(cell.east_neighbor) else '|'
+                top = top + body + east_boundary
+
+                south_boundary = '     ' if cell.is_linked(cell.south_neighbor) else ' --- '
+                bottom = bottom + south_boundary + corner
+
+            output = output + top + '\n' + bottom + '\n'
+
+        return output
