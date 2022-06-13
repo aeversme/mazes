@@ -3,7 +3,7 @@ from binary_tree import BinaryTree
 
 
 def create_maze():
-    grid = Grid(4, 4)
+    grid = Grid(12, 12)
     BinaryTree.on(grid.grid)
     return grid
 
