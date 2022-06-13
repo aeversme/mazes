@@ -15,15 +15,14 @@ class Grid:
         :return: list
         """
         grid = []
-        for row in self.rows:
+        for r in range(self.rows):
             new_row = []
-            for column in self.columns:
-                new_row.append(Cell(row, column))
+            for c in range(self.columns):
+                new_row.append(Cell(r, c))
             grid.append(new_row)
         return grid
 
-    @staticmethod
-    def configure_cells(grid):
+    def configure_cells(self, grid):
         """
         Iterates through a grid and assigns neighbors to each Cell object in the grid.
         :param grid: list
@@ -33,21 +32,21 @@ class Grid:
             for cell in r:
                 row, column = cell.row, cell.column
 
-                cell.north_neighbor = grid[row - 1][column]
-                cell.south_neighbor = grid[row + 1][column]
-                cell.west_neighbor = grid[row][column - 1]
-                cell.east_neighbor = grid[row][column + 1]
+                cell.north_neighbor = self.array_lookup(row - 1, column)
+                cell.south_neighbor = self.array_lookup(row + 1, column)
+                cell.west_neighbor = self.array_lookup(row, column - 1)
+                cell.east_neighbor = self.array_lookup(row, column + 1)
 
-    def grid_accessor(self, row, column):
+    def array_lookup(self, row, column):
         """
         Returns a Cell object, or None if one of the parameters is outside the grid boundaries.
         :param row: int
         :param column: int
         :return: None, or Cell object
         """
-        if 0 <= row <= self.rows - 1 or 0 <= column <= len(self.grid[row]) - 1:
-            return self.grid[row][column]
-        return None
+        if row < 0 or row > (self.rows - 1) or column < 0 or column > (len(self.grid[row]) - 1):
+            return None
+        return self.grid[row][column]
 
     def random_cell(self):
         """

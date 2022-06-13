@@ -9,7 +9,7 @@ class Cell:
         self.west_neighbor = None
 
     def __repr__(self):
-        return f"Row {self.row}, column {self.column}"
+        return f"Cell R{self.row} C{self.column}"
 
     def link(self, cell, bidi=True):
         self.links[cell] = True
