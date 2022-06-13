@@ -28,10 +28,11 @@ def test_cell_link():
 def test_cell_unlink():
     cell1, cell2 = setup(link=True)
 
-    cell1.unlink(cell2)
+    unlink = cell1.unlink(cell2)
 
     with pytest.raises(KeyError):
         link = cell1.links[cell2]
+    assert unlink == {}
 
 
 def test_cell_show_links():
