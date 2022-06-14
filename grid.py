@@ -1,5 +1,6 @@
 from cell import Cell
 from random import randint
+from PIL import Image, ImageDraw
 
 
 class Grid:
@@ -85,3 +86,33 @@ class Grid:
             output = output + top + '\n' + bottom + '\n'
 
         return output
+
+    def to_png(self, cell_size=40):
+        img_height = cell_size * self.rows
+        img_width = cell_size * self.columns
+
+        white = (255, 255, 255)
+        black = (0, 0, 0)
+
+        image = Image.new('RGB', (img_width + 1, img_height + 1), white)
+        draw = ImageDraw.Draw(image)
+
+        for row in self.grid:
+            for cell in row:
+                x1 = cell.column * cell_size
+                y1 = cell.row * cell_size
+
+                x2 = (cell.column + 1) * cell_size
+                y2 = (cell.row + 1) * cell_size
+
+                if not cell.north_neighbor:
+                    draw.line((x1, y1, x2, y1), fill=black, width=1)
+                if not cell.west_neighbor:
+                    draw.line((x1, y1, x1, y2), fill=black, width=1)
+
+                if not cell.is_linked(cell.east_neighbor):
+                    draw.line((x2, y1, x2, y2), fill=black, width=1)
+                if not cell.is_linked(cell.south_neighbor):
+                    draw.line((x1, y2, x2, y2), fill=black, width=1)
+
+        return image
