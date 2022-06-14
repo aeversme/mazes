@@ -1,7 +1,5 @@
 # Mazes
 
----
-
 This repository contains my Python translation of the Ruby code contained in the book _Mazes for Programmers_ by Jamis 
 Buck.
 
@@ -10,8 +8,6 @@ Created so far:
 * Grid class
 * Binary Tree algorithm
 * Sidewinder algorithm
-
----
 
 The Grid class can generate mazes in two ways: as ASCII art in the terminal, and by rendering the maze as a .png file 
 using Pillow.
