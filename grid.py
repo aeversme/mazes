@@ -66,9 +66,9 @@ class Grid:
         return self.rows * self.columns
 
     def __str__(self):
-        output = '+' + (' --- +' * self.columns) + '\n'
+        output = '+' + (' \U00002500\U00002500\U00002500 +' * self.columns) + '\n'
         for row in self.grid:
-            top = '|'
+            top = '\U00002502'
             bottom = '+'
             for cell in row:
                 if not cell:
@@ -77,10 +77,10 @@ class Grid:
                 body = '     '
                 corner = '+'
 
-                east_boundary = ' ' if cell.is_linked(cell.east_neighbor) else '|'
+                east_boundary = ' ' if cell.is_linked(cell.east_neighbor) else '\U00002502'
                 top = top + body + east_boundary
 
-                south_boundary = '     ' if cell.is_linked(cell.south_neighbor) else ' --- '
+                south_boundary = '     ' if cell.is_linked(cell.south_neighbor) else ' \U00002500\U00002500\U00002500 '
                 bottom = bottom + south_boundary + corner
 
             output = output + top + '\n' + bottom + '\n'
